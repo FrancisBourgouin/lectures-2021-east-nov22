@@ -1,0 +1,25 @@
+{
+	"name": "w2d1-tdd",
+	"version": "1.0.0",
+	"description": "TDD with Mocha and Chai (W2D1)",
+	"main": "shoppingCart.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "mocha",
+		"start": "node ./shoppingCart.js",
+		"potato": "ls"
+	},
+	"keywords": [
+		"cool",
+		"testing",
+		"life"
+	],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"chai": "^4.3.4",
+		"mocha": "^9.1.3"
+	}
+}
