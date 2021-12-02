@@ -1,0 +1,4 @@
+- Callbacks with async
+- Functions in others files
+- request package
+- Async flow
