@@ -1,0 +1,15 @@
+{
+  "name": "w3d1",
+  "version": "1.0.0",
+  "description": "- HTTP Review\r - Basic web server review\r - Simple routing with HTTP\r - Better routing with Express\r - What are middlewares?\r - Playing with template literals\r - Route breakout\r - Using a rendering engine",
+  "main": "express_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
