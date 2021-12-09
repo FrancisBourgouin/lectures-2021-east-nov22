@@ -1,0 +1,32 @@
+body {
+  margin:0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body > h1{
+  margin:0;
+  padding:1em;
+  text-align: center;
+  background:#333;
+  color:#fff;
+}
+
+form{
+  margin:2em auto;
+  display:flex;
+  flex-direction:column;
+  max-width:500px;
+}
+
+form h1{
+  font-size:1em;
+}
+
+form input, form button{
+  padding:0.5em 0.25em;
+  margin:0.25em 0;
+}
+
+a {
+  color: #00B7FF;
+}
