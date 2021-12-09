@@ -1,3 +1,5 @@
+const bcrypt = require("bcryptjs");
+
 const authenticateUser = (email, password, db) => {
   const potentialUser = db[email];
 
@@ -9,8 +11,8 @@ const authenticateUser = (email, password, db) => {
   }
 
   // Validate if the passwords match
-
-  if (potentialUser.password !== password) {
+  const passwordMatch = bcrypt.compareSync(password, potentialUser.password);
+  if (!passwordMatch) {
     return { err: "Bad password", data: null };
   }
 

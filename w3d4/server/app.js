@@ -1,7 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
+const bcrypt = require("bcryptjs");
 const logger = require("morgan");
 const { authenticateUser, fetchUserInformation } = require("./helpers/userHelpers");
 
@@ -28,17 +30,19 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 
+const salt = bcrypt.genSaltSync(10);
+console.log(process.env.USER1_PASSWORD);
 const user1 = {
   name: "Dimitri Ivanovich Mendeleiv",
   email: "periodic@table.com",
-  password: "hydrogen",
+  password: bcrypt.hashSync(process.env.USER1_PASSWORD, salt),
   secret: "Actually prefers biology",
 };
 
 const user2 = {
   name: "Leon Seminiovitch Tolstoi",
   email: "war@peace.com",
-  password: "priviet",
+  password: bcrypt.hashSync(process.env.USER2_PASSWORD, salt),
   secret: "He likes vodka and didn't write for real.",
 };
 
@@ -66,7 +70,7 @@ app.post("/login", (req, res) => {
   const result = authenticateUser(email, password, userDatabaseIsh);
 
   if (result.err) {
-    console.log(err);
+    console.log(result.err);
     return res.redirect("/");
   }
   // eyJlbWFpbCI6InBlcmlvZGljQHRhYmxlLmNvbSJ9 for Dimitri
@@ -100,6 +104,60 @@ app.get("/vault", (req, res) => {
   };
   // Render the vault template with the templateVars
   return res.render("vault", templateVars);
+});
+
+app.get("/dashboard", (req, res) => {
+  const email = req.session.email;
+
+  const currentUser = fetchUserInformation(email, userDatabaseIsh);
+  // Give that to templateVars
+
+  if (currentUser.err) {
+    return res.redirect("/");
+  }
+  res.json(userDatabaseIsh);
+});
+
+app.get("/register", (req, res) => {
+  return res.render("register");
+});
+
+app.post("/register", (req, res) => {
+  // Extract info / validate from the form (name, email, password, secret)
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+  const secret = req.body.secret;
+
+  if (!name || !email || !password || !secret) {
+    return res.redirect("/");
+  }
+
+  // Check if there is already a user with email
+  const currentUser = fetchUserInformation(email, userDatabaseIsh);
+  // Give that to templateVars
+
+  if (currentUser.data) {
+    return res.redirect("/");
+  }
+  // Create user object
+  const newUser = {
+    name,
+    email,
+    password: bcrypt.hashSync(password, salt),
+    secret,
+  };
+  // Add user object to DB
+
+  userDatabaseIsh[email] = newUser;
+
+  // Add cookie for email
+
+  req.session.email = email;
+
+  // Redirect vault
+
+  return res.redirect("/vault");
 });
 
 module.exports = app;
