@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "question": "Knock knock, whos there, to who",
+    "answer": "no, to whom",
+    "rating": 3,
+    "author_id": 1,
+    "name": "Francis",
+    "funny": true,
+    "description": "Oh boy, he is a teacher",
+    "joke_id": 1
+  },
+  {
+    "id": 2,
+    "question": "How is a bouncer at a club like a dish soap?",
+    "answer": "They both DETER GENTS",
+    "rating": 5,
+    "author_id": 2,
+    "name": "Paul",
+    "funny": true,
+    "description": "A student in march01",
+    "joke_id": 2
+  },
+  {
+    "id": 3,
+    "question": "What do you call a belt made out of watches?",
+    "answer": "A waist of time.",
+    "rating": 5,
+    "author_id": 3,
+    "name": "Mike",
+    "funny": true,
+    "description": "A student in march01",
+    "joke_id": 3
+  },
+  {
+    "id": 1,
+    "question": "Why do programmers mix hallowen and christmas",
+    "answer": "because OCT 31 === DEC 25",
+    "rating": 5,
+    "author_id": 1,
+    "name": "Francis",
+    "funny": true,
+    "description": "Oh boy, he is a teacher",
+    "joke_id": 4
+  },
+  {
+    "id": 4,
+    "question": "You know you should knock on your fridge door before opening it",
+    "answer": "There might by a salad dressing",
+    "rating": 5,
+    "author_id": 4,
+    "name": "Grigor",
+    "funny": true,
+    "description": "A student in march29",
+    "joke_id": 5
+  }
+]
